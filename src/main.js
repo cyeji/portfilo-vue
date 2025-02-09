@@ -19,6 +19,7 @@ import DataView from "primevue/dataview";
 import Rating from "primevue/rating";
 import Toast from "primevue/toast";
 import ToastService from 'primevue/toastservice';
+import Dialog from 'primevue/dialog';
 
 const app = createApp(App)
 
@@ -43,6 +44,7 @@ app.component('Avatar', Avatar)
 app.component('DataView', DataView)
 app.component('Rating', Rating)
 app.component('Toast', Toast)
+app.component('Dialog', Dialog)
 
 
 app.mount('#app')

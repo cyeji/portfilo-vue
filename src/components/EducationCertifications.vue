@@ -1,84 +1,74 @@
 <script setup>
 import { ref } from "vue";
 
-const events = ref([
+const educationList = ref([
   {
-    year: "2019",
-    title: "정보처리기사",
+    year: "2021",
+    title: "정보처리기사 취득",
     description: "한국산업인력공단에서 발급한 정보처리기사 자격증을 취득하였습니다.",
-    details: [
-      "발급기관: 한국산업인력공단",
-      "발급일자: 2019.11.22",
-      "등록번호: 19203101038V"
-    ],
-    icon: "pi pi-check-circle"
-  },
-  {
-    year: "2023",
-    title: "AWS Certified Cloud Practitioner",
-    description: "AWS에서 클라우드 기본 자격증을 취득하였습니다.",
-    details: [
-      "발급기관: AWS",
-      "발급일자: 2023.07.28",
-      "등록번호: FOYHPLR2VB1EQY91"
-    ],
-    icon: "pi pi-cloud"
+    details: "이 시험에서는 소프트웨어 개발, 데이터베이스, 운영체제, 네트워크, 보안 등의 지식을 평가하며, 2021년 11월 16일에 자격증을 취득하였습니다.",
+    icon: "pi pi-check-circle",
+    showModal: false // 모달 활성화 여부
   },
   {
     year: "2024",
-    title: "SQLD",
-    description: "데이터베이스 관련 지식을 검증하는 SQLD 자격증을 취득하였습니다.",
-    details: [
-      "발급기관: 한국데이터산업진흥원",
-      "발급일자: 2024.12.13",
-      "등록번호: SQLD-055004149"
-    ],
-    icon: "pi pi-database"
+    title: "INNER Circle 교육",
+    description: "2024년 11월부터 2025년 3월까지 진행된 INNER Circle 교육을 수료하였습니다.",
+    details: "해당 교육에서는 소프트웨어 개발 방법론, DevOps, 프로젝트 협업 등의 실습을 진행하였으며, 256시간 이상의 교육을 이수하였습니다.",
+    icon: "pi pi-book",
+    showModal: true // 이 항목은 모달을 띄우지 않음
   }
 ]);
+
+const selectedEducation = ref(null);
+const isModalOpen = ref(false);
+
+const openModal = (education) => {
+  if (education.showModal) { // 모달 활성화된 항목만 열기
+    selectedEducation.value = education;
+    isModalOpen.value = true;
+  }
+};
 </script>
 
 <template>
-  <div class="flex flex-col gap-6">
-
-    <!-- 타임라인 및 카드 -->
+  <div class="p-6">
     <Card class="shadow-lg">
       <template #title>
-        <h2 class="text-xl font-semibold">📜 교육 및 자격증</h2>
+        <h2 class="text-3xl font-bold mb-6">📜 교육 및 자격증</h2>
       </template>
       <template #content>
-        <div class="relative">
-          <!-- 가로형 타임라인 -->
-          <Timeline :value="events" layout="horizontal">
-            <template #marker="slotProps">
-              <span
-                class="flex items-center justify-center w-10 h-10 rounded-full bg-green-500 text-white"
-              >
-                <i :class="slotProps.item.icon"></i>
-              </span>
-            </template>
-            <template #content="slotProps">
-              <p class="text-center text-lg font-bold">{{ slotProps.item.year }}</p>
-            </template>
-          </Timeline>
-
-          <!-- 카드 배치 -->
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
-            <Card v-for="(event, index) in events" :key="index" class="shadow-lg">
-              <template #title>
-                <h2 class="text-lg font-bold">{{ event.title }}</h2>
-              </template>
-              <template #content>
-                <p class="text-gray-600">{{ event.description }}</p>
-                <ul class="mt-2 text-sm text-gray-500">
-                  <li v-for="(detail, idx) in event.details" :key="idx">• {{ detail }}</li>
-                </ul>
-              </template>
-            </Card>
-          </div>
-        </div>
+        <!-- 타임라인 -->
+        <Timeline :value="educationList" align="left">
+          <template #marker="slotProps">
+            <span class="flex items-center justify-center w-8 h-8 rounded-full bg-blue-500 text-white cursor-pointer"
+                  @click="openModal(slotProps.item)">
+              <i :class="slotProps.item.icon"></i>
+            </span>
+          </template>
+          <template #content="slotProps">
+            <div class="cursor-pointer hover:text-blue-500 transition duration-200">
+              <h3 class="text-lg font-semibold">{{ slotProps.item.year }} - {{ slotProps.item.title }}</h3>
+              <p class="text-gray-600 text-sm">{{ slotProps.item.description }}</p>
+              <Button v-if="slotProps.item.showModal"
+                      label="Read more" text class="mt-2 text-blue-500"
+                      @click="openModal(slotProps.item)" />
+            </div>
+          </template>
+        </Timeline>
       </template>
     </Card>
 
+    <!-- 모달 (Dialog) -->
+    <Dialog :visible="isModalOpen" modal header="자세한 정보" class="w-1/2"
+            @update:visible="isModalOpen = $event">
+      <div v-if="selectedEducation">
+        <h3 class="text-xl font-bold">{{ selectedEducation.year }} - {{ selectedEducation.title }}</h3>
+        <p class="mt-2 text-gray-600">{{ selectedEducation.details }}</p>
+      </div>
+      <template #footer>
+        <Button label="닫기" icon="pi pi-times" class="p-button-text" @click="isModalOpen = false" />
+      </template>
+    </Dialog>
   </div>
 </template>
