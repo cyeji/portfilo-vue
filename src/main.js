@@ -20,7 +20,12 @@ import Rating from "primevue/rating";
 import Toast from "primevue/toast";
 import ToastService from 'primevue/toastservice';
 import Dialog from 'primevue/dialog';
-
+import Stepper from 'primevue/stepper';
+import StepList from 'primevue/steplist';
+import StepPanels from 'primevue/steppanels';
+import StepItem from 'primevue/stepitem';
+import Step from 'primevue/step';
+import StepPanel from 'primevue/steppanel';
 const app = createApp(App)
 
 app.use(createPinia())
@@ -45,6 +50,12 @@ app.component('DataView', DataView)
 app.component('Rating', Rating)
 app.component('Toast', Toast)
 app.component('Dialog', Dialog)
+app.component('Stepper', Stepper)
+app.component('StepPanels', StepPanels)
+app.component('StepPanel', StepPanel)
+app.component('Step', Step)
+app.component('StepItem', StepItem)
+app.component('StepList', StepList)
 
 
 app.mount('#app')
