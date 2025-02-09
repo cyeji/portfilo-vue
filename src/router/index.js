@@ -8,7 +8,6 @@ const router = createRouter({
       name: 'dashboard',
       component: () => import('../views/DashBoard.vue'),
     },
-
   ],
 })
 
