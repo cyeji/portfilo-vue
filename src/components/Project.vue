@@ -1,76 +1,109 @@
 <script setup>
 import { ref } from "vue";
-import { useToast } from "primevue/usetoast";
 
 const projects = ref([
   {
-    id: "1st project",
-    title: "처리율 제한기",
-    description: "서버의 처리량을 제한하여 안정성을 확보하는 프로젝트",
-    goal: "높은 트래픽에서도 안정적인 시스템 운영",
-    keyFeatures: ["API 요청 제한", "레이트 리미터 적용", "모니터링 기능"],
-    tools: "Spring Boot, Redis, Vue.js",
-    contribution: 4,
-    experience: 3,
-    link: "#"
+    title: "감성 카트",
+    period: "2024.11 ~ 2025.03",
+    githubUrl: "https://github.com/",
+    deployUrl: "https://helloworld.com",
+    techStack: "SpringBoot",
+    details: [
+      "초기 기능 정의 및 화면 기획 진행"
+    ]
   }
 ]);
-
-const toast = useToast();
-const openProject = (link) => {
-  toast.add({ severity: "info", summary: "프로젝트 이동", detail: "링크: " + link, life: 3000 });
-};
 </script>
 
 <template>
   <div class="p-6">
-    <Card v-for="(project, index) in projects" :key="index" class="shadow-lg p-6 border border-gray-300">
-      <template #title>
-        <div class="flex items-center space-x-4">
-          <span class="text-xl font-bold">{{ project.id }}</span>
-          <h2 class="text-2xl font-semibold">{{ project.title }}</h2>
+    <h2 class="text-3xl font-bold text-gray-900 mb-6">📌 프로젝트</h2>
+
+    <div v-for="project in projects" :key="project.title" class="project-card">
+      <!-- 프로젝트 제목 및 기간 -->
+      <h3 class="project-title">{{ project.title }}</h3>
+      <p class="project-period">{{ project.period }}</p>
+
+      <!-- 프로젝트 상세 설명 -->
+      <div class="project-details">
+        <p class="bold-title">🔹 프로젝트 상세</p>
+        <div class="project-info">
+          <p><strong>GitHub URL</strong> | <a :href="project.githubUrl" target="_blank">{{ project.githubUrl }}</a></p>
+          <p><strong>배포 URL</strong> | <a :href="project.deployUrl" target="_blank">{{ project.deployUrl }}</a></p>
+          <p><strong>사용 기술</strong> | {{ project.techStack }}</p>
         </div>
-        <hr class="mt-2 border-dotted border-gray-400">
-      </template>
 
-      <template #content>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
-          <!-- 왼쪽: 프로젝트 정보 -->
-          <div class="pr-6 border-r">
-            <p class="text-lg font-bold border-l-4 border-blue-400 pl-2 inline-block">소개</p>
-            <p class="mt-2">{{ project.description }}</p>
-
-            <p class="text-lg font-bold border-l-4 border-blue-400 pl-2 inline-block mt-4">목표</p>
-            <p class="mt-2">{{ project.goal }}</p>
-
-            <p class="text-lg font-bold border-l-4 border-blue-400 pl-2 inline-block mt-4">핵심 기능</p>
-            <ul class="list-disc ml-5 text-sm mt-2">
-              <li v-for="(feature, idx) in project.keyFeatures" :key="idx">{{ feature }}</li>
-            </ul>
-          </div>
-
-          <!-- 오른쪽: Tool 및 기여도 -->
-          <div class="pl-6">
-            <p class="text-lg font-bold">Tool</p>
-            <p class="text-sm text-gray-500">{{ project.tools }}</p>
-
-            <p class="text-lg font-bold mt-4">개인 기여도 및 경험</p>
-            <Rating :value="project.contribution" :readonly="true" :cancel="false" class="mt-2" />
-            <Rating :value="project.experience" :readonly="true" :cancel="false" class="mt-2" />
-
-            <p class="text-sm text-gray-600 mt-2">
-              개발 과정에서 성능 최적화와 대용량 트래픽 제어에 집중하여 안정적인 서비스를 제공하였습니다.
-            </p>
-          </div>
-        </div>
-      </template>
-
-      <template #footer>
-        <Button label="프로젝트 보기(링크)" icon="pi pi-external-link" class="p-button-sm p-button-text"
-                @click="openProject(project.link)" />
-      </template>
-    </Card>
-
-    <Toast />
+        <!-- 상세 설명 목록 -->
+        <ul class="details-list">
+          <li v-for="(detail, index) in project.details" :key="index">
+            • {{ detail }}
+          </li>
+        </ul>
+      </div>
+    </div>
   </div>
 </template>
+
+<style scoped>
+/* 프로젝트 카드 */
+.project-card {
+  border: 2px solid #d9e2ef;
+  border-radius: 12px;
+  padding: 20px;
+  background: #fff;
+  margin-bottom: 20px;
+}
+
+/* 프로젝트 제목 */
+.project-title {
+  font-size: 18px;
+  font-weight: bold;
+  color: #0057ff;
+  margin-bottom: 4px;
+}
+
+/* 프로젝트 기간 */
+.project-period {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 16px;
+}
+
+/* 프로젝트 상세 박스 */
+.project-details {
+  background: #f5f7fa;
+  padding: 12px;
+  border-radius: 8px;
+}
+
+/* 굵은 제목 스타일 */
+.bold-title {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+/* 프로젝트 정보 스타일 */
+.project-info p {
+  font-size: 14px;
+  margin: 4px 0;
+}
+
+.project-info a {
+  color: #0057ff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.project-info a:hover {
+  text-decoration: underline;
+}
+
+/* 상세 설명 목록 */
+.details-list {
+  font-size: 14px;
+  color: #333;
+  margin-top: 12px;
+  line-height: 1.6;
+}
+</style>
