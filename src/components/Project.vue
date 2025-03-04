@@ -3,87 +3,107 @@ import { ref } from "vue";
 
 const projects = ref([
   {
-    id: "1",
-    title: "처리율 제한기",
-    description: "서버의 처리량을 제한하여 안정성을 확보하는 프로젝트",
-    details: "Spring Boot 기반으로 API 요청을 제한하는 레이트 리미터를 개발하였으며, Redis를 활용하여 성능 최적화를 진행하였습니다.",
-    tools: "Spring Boot, Redis, Vue.js",
-    contribution: 4,
-    experience: 3
-  },
-  {
-    id: "2",
-    title: "AI 추천 시스템",
-    description: "사용자 행동 데이터를 분석하여 맞춤형 추천을 제공하는 시스템",
-    details: "TensorFlow를 활용하여 머신러닝 모델을 개발하였으며, FastAPI를 기반으로 API 서버를 구축하여 추천 서비스를 제공합니다.",
-    tools: "Python, TensorFlow, FastAPI",
-    contribution: 5,
-    experience: 4
-  },
-  {
-    id: "3",
-    title: "실시간 채팅 애플리케이션",
-    description: "WebSocket 기반으로 실시간 채팅을 제공하는 애플리케이션",
-    details: "Spring WebFlux와 Vue.js를 활용하여 비동기 채팅 기능을 구현하고, Redis Pub/Sub을 이용하여 성능을 최적화하였습니다.",
-    tools: "Spring WebFlux, Redis Pub/Sub, Vue.js",
-    contribution: 4,
-    experience: 5
+    title: "감성 카트",
+    period: "2024.11 ~ 2025.03",
+    githubUrl: "https://github.com/",
+    deployUrl: "https://helloworld.com",
+    techStack: "SpringBoot",
+    details: [
+      "초기 기능 정의 및 화면 기획 진행"
+    ]
   }
 ]);
 </script>
 
 <template>
   <div class="p-6">
-    <Card class="shadow-lg p-6">
-      <template #title>
-        <h2 class="text-3xl font-bold mb-6">🚀 프로젝트 목록</h2>
-      </template>
+    <h2 class="text-3xl font-bold text-gray-900 mb-6">📌 프로젝트</h2>
 
-      <template #content>
-        <Stepper value="1" class="basis-[50rem]">
-          <!-- Step Titles -->
-          <StepList>
-            <Step v-for="project in projects" :key="project.id" :value="project.id">
-              {{ project.title }}
-            </Step>
-          </StepList>
+    <div v-for="project in projects" :key="project.title" class="project-card">
+      <!-- 프로젝트 제목 및 기간 -->
+      <h3 class="project-title">{{ project.title }}</h3>
+      <p class="project-period">{{ project.period }}</p>
 
-          <!-- Step Content -->
-          <StepPanels>
-            <StepPanel v-for="(project, index) in projects" :key="project.id" :value="project.id" v-slot="{ activateCallback }">
-              <div class="flex flex-col h-48">
-                <Card class="shadow-lg p-6 flex-grow">
-                  <template #title>
-                    <h3 class="text-xl font-bold">{{ project.title }}</h3>
-                  </template>
-                  <template #content>
-                    <p><strong>설명:</strong> {{ project.details }}</p>
-                    <p class="mt-2"><strong>사용 기술:</strong> {{ project.tools }}</p>
+      <!-- 프로젝트 상세 설명 -->
+      <div class="project-details">
+        <p class="bold-title">🔹 프로젝트 상세</p>
+        <div class="project-info">
+          <p><strong>GitHub URL</strong> | <a :href="project.githubUrl" target="_blank">{{ project.githubUrl }}</a></p>
+          <p><strong>배포 URL</strong> | <a :href="project.deployUrl" target="_blank">{{ project.deployUrl }}</a></p>
+          <p><strong>사용 기술</strong> | {{ project.techStack }}</p>
+        </div>
 
-                    <div class="mt-3">
-                      <p class="font-semibold">개인 기여도</p>
-                      <Rating :value="project.contribution" :readonly="true" :cancel="false" />
-                    </div>
-
-                    <div class="mt-3">
-                      <p class="font-semibold">경험</p>
-                      <Rating :value="project.experience" :readonly="true" :cancel="false" />
-                    </div>
-                  </template>
-                </Card>
-              </div>
-
-              <!-- Navigation Buttons: 중앙 정렬 -->
-              <div class="flex pt-6 justify-center space-x-4">
-                <Button v-if="index > 0" label="Back" severity="secondary" icon="pi pi-arrow-left"
-                        @click="activateCallback(projects[index - 1].id)" />
-                <Button v-if="index < projects.length - 1" label="Next" icon="pi pi-arrow-right" iconPos="right"
-                        @click="activateCallback(projects[index + 1].id)" />
-              </div>
-            </StepPanel>
-          </StepPanels>
-        </Stepper>
-      </template>
-    </Card>
+        <!-- 상세 설명 목록 -->
+        <ul class="details-list">
+          <li v-for="(detail, index) in project.details" :key="index">
+            • {{ detail }}
+          </li>
+        </ul>
+      </div>
+    </div>
   </div>
 </template>
+
+<style scoped>
+/* 프로젝트 카드 */
+.project-card {
+  border: 2px solid #d9e2ef;
+  border-radius: 12px;
+  padding: 20px;
+  background: #fff;
+  margin-bottom: 20px;
+}
+
+/* 프로젝트 제목 */
+.project-title {
+  font-size: 18px;
+  font-weight: bold;
+  color: #0057ff;
+  margin-bottom: 4px;
+}
+
+/* 프로젝트 기간 */
+.project-period {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 16px;
+}
+
+/* 프로젝트 상세 박스 */
+.project-details {
+  background: #f5f7fa;
+  padding: 12px;
+  border-radius: 8px;
+}
+
+/* 굵은 제목 스타일 */
+.bold-title {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+/* 프로젝트 정보 스타일 */
+.project-info p {
+  font-size: 14px;
+  margin: 4px 0;
+}
+
+.project-info a {
+  color: #0057ff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.project-info a:hover {
+  text-decoration: underline;
+}
+
+/* 상세 설명 목록 */
+.details-list {
+  font-size: 14px;
+  color: #333;
+  margin-top: 12px;
+  line-height: 1.6;
+}
+</style>

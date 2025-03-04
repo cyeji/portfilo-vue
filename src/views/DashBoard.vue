@@ -1,16 +1,12 @@
 <script setup>
-import AppTimeLine from '@/components/AppTimeLine.vue'
 import Intro from '@/components/Intro.vue'
-import Skill from '@/components/Skill.vue'
-import EducationCertifications from '@/components/EducationCertifications.vue'
+import Introduce from '@/components/Introduce.vue'
 import Project from '@/components/Project.vue'
 </script>
 
 <template>
   <intro />
-  <skill/>
-  <app-time-line />
-  <education-certifications/>
+  <introduce/>
   <project/>
 </template>
 
