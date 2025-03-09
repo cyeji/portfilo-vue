@@ -3,7 +3,7 @@
     <template #content>
       <div class="profile-container">
         <div class="profile-image">
-          <img src="https://primefaces.org/cdn/primevue/images/galleria/galleria11.jpg" alt="Profile Image" />
+          <img src="https://avatars.githubusercontent.com/u/98408267?v=4" alt="Profile Image" />
         </div>
         <div class="profile-text">
           <h1>조예지 <span class="eng-name">yeji cho</span></h1>
@@ -18,6 +18,10 @@
               세명대학교 / 한방바이오융합학부 전공<br />
               세명대학교 / 소프트웨어학 복수전공
             </p>
+          </div>
+          <div class="info">
+            <p class="label">블로그</p>
+            <a href="https://yejipro.tistory.com" target="_blank" class="highlight">https://yejipro.tistory.com</a>
           </div>
         </div>
       </div>
@@ -99,4 +103,21 @@ hr {
 .value {
   color: #333;
 }
+
+/* GitHub URL 하이라이트 스타일 */
+.highlight {
+  background-color: #e8f0ff; /* 연한 파란색 배경 */
+  color: #0057ff; /* 진한 파란색 글자 */
+  font-weight: bold;
+  padding: 3px 6px;
+  border-radius: 4px;
+  text-decoration: none;
+}
+
+.highlight:hover {
+  background-color: #d0e2ff;
+  text-decoration: underline;
+}
 </style>
+<script setup lang="ts">
+</script>

@@ -1,3 +1,40 @@
+<template>
+  <div class="p-6">
+    <h2 class="text-3xl font-bold text-gray-900 mb-6">📌 프로젝트</h2>
+
+    <div v-for="(project, index) in projects" :key="index" class="project-card">
+      <!-- 프로젝트 제목과 버튼을 한 줄에 배치 -->
+      <div class="project-header">
+        <h3 class="project-title">{{ project.title }}</h3>
+        <router-link :to="'/projects/' + index" class="view-more">
+          자세히 보기 →
+        </router-link>
+      </div>
+
+      <p class="project-period">{{ project.period }}</p>
+
+      <!-- 프로젝트 상세 설명 -->
+      <div class="project-details">
+        <p class="bold-title">🔹 프로젝트 상세</p>
+        <div class="project-info">
+          <p><strong>소개</strong> | {{ project.intro }}</p>
+          <p><strong>GitHub URL</strong> |
+            <a :href="project.githubUrl" target="_blank">{{ project.githubUrl }}</a>
+          </p>
+          <p><strong>사용 기술</strong> | {{ project.techStack }}</p>
+        </div>
+
+        <!-- 상세 설명 목록 -->
+        <ul class="details-list">
+          <li v-for="(detail, index) in project.details" :key="index">
+            {{ detail }}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</template>
+
 <script setup>
 import { ref } from "vue";
 
@@ -7,7 +44,7 @@ const projects = ref([
     period: "2024.11 ~ 2025.03",
     githubUrl: "https://github.com/FC-InnerCircle-ICD2/commerce-BE",
     intro: "쿠팡 기반 이커머스 플랫폼",
-    techStack: "SpringBoot(Java), Junit, Open-Feign,  DDD, Multi-Module, Redis",
+    techStack: "SpringBoot(Java), Junit, Open-Feign, DDD, Multi-Module, Redis",
     details: [
       "팀 부리더로서 일정 관리 및 문서 작업 담당",
       "초기 기능 정의 및 화면 기획 진행",
@@ -32,35 +69,6 @@ const projects = ref([
 ]);
 </script>
 
-<template>
-  <div class="p-6">
-    <h2 class="text-3xl font-bold text-gray-900 mb-6">📌 프로젝트</h2>
-
-    <div v-for="project in projects" :key="project.title" class="project-card">
-      <!-- 프로젝트 제목 및 기간 -->
-      <h3 class="project-title">{{ project.title }}</h3>
-      <p class="project-period">{{ project.period }}</p>
-
-      <!-- 프로젝트 상세 설명 -->
-      <div class="project-details">
-        <p class="bold-title">🔹 프로젝트 상세</p>
-        <div class="project-info">
-          <p><strong>소개</strong> | {{project.intro}}</p>
-          <p><strong>GitHub URL</strong> | <a :href="project.githubUrl" target="_blank">{{ project.githubUrl }}</a></p>
-          <p><strong>사용 기술</strong> | {{ project.techStack }}</p>
-        </div>
-
-        <!-- 상세 설명 목록 -->
-        <ul class="details-list">
-          <li v-for="(detail, index) in project.details" :key="index">
-            {{ detail }}
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</template>
-
 <style scoped>
 /* 프로젝트 카드 */
 .project-card {
@@ -71,12 +79,19 @@ const projects = ref([
   margin-bottom: 20px;
 }
 
+/* 프로젝트 제목과 버튼을 한 줄에 배치 */
+.project-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
 /* 프로젝트 제목 */
 .project-title {
   font-size: 18px;
   font-weight: bold;
   color: #0057ff;
-  margin-bottom: 4px;
 }
 
 /* 프로젝트 기간 */
@@ -93,11 +108,20 @@ const projects = ref([
   border-radius: 8px;
 }
 
-/* 굵은 제목 스타일 */
-.bold-title {
-  font-size: 16px;
+/* 자세히 보기 버튼 */
+.view-more {
+  display: inline-block;
+  padding: 6px 12px;
+  background: #0057ff;
+  color: white;
+  border-radius: 4px;
+  text-decoration: none;
   font-weight: bold;
-  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.view-more:hover {
+  background: #0045cc;
 }
 
 /* 프로젝트 정보 스타일 */
