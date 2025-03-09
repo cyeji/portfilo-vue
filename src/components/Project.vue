@@ -5,11 +5,28 @@ const projects = ref([
   {
     title: "감성 카트",
     period: "2024.11 ~ 2025.03",
-    githubUrl: "https://github.com/",
-    deployUrl: "https://helloworld.com",
-    techStack: "SpringBoot",
+    githubUrl: "https://github.com/FC-InnerCircle-ICD2/commerce-BE",
+    intro: "쿠팡 기반 이커머스 플랫폼",
+    techStack: "SpringBoot(Java), Junit, Open-Feign,  DDD, Multi-Module, Redis",
     details: [
-      "초기 기능 정의 및 화면 기획 진행"
+      "팀 부리더로서 일정 관리 및 문서 작업 담당",
+      "초기 기능 정의 및 화면 기획 진행",
+      "협업을 위한 Git 커밋 컨벤션 정의 및 코드 리뷰 진행",
+      "주문, 배송 도메인 기능 개발 및 비즈니스 로직 구현",
+      "외부 도메인(결제, 재고 등)과의 통신 모듈 개발 및 API 연동",
+      "트랜잭션 안정성을 고려한 주문 프로세스 개선"
+    ]
+  },
+  {
+    title: "rate-limiter-spring-boot-starter",
+    period: "2024.11 ~ 2025.03",
+    githubUrl: "https://github.com/innercicle-be-rate-limiter/rate-limiter-spring-boot-starter",
+    intro: "가상면접 사례로 배우는 대규모 시스템 설계 기초 책 실습 : 처리율 제한기",
+    techStack: "SpringBoot(Java), Junit, Multi-Module, Redis",
+    details: [
+      "Spring Boot 기반 처리율 제한기(Rate Limiter) 구현",
+      "처리율 제한 알고리즘을 활용한 요청 제한 적용",
+      "Redis를 이용한 분산 환경에서의 동시성 문제 해결"
     ]
   }
 ]);
@@ -28,15 +45,15 @@ const projects = ref([
       <div class="project-details">
         <p class="bold-title">🔹 프로젝트 상세</p>
         <div class="project-info">
+          <p><strong>소개</strong> | {{project.intro}}</p>
           <p><strong>GitHub URL</strong> | <a :href="project.githubUrl" target="_blank">{{ project.githubUrl }}</a></p>
-          <p><strong>배포 URL</strong> | <a :href="project.deployUrl" target="_blank">{{ project.deployUrl }}</a></p>
           <p><strong>사용 기술</strong> | {{ project.techStack }}</p>
         </div>
 
         <!-- 상세 설명 목록 -->
         <ul class="details-list">
           <li v-for="(detail, index) in project.details" :key="index">
-            • {{ detail }}
+            {{ detail }}
           </li>
         </ul>
       </div>
