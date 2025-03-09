@@ -1,6 +1,3 @@
-<script setup>
-</script>
-
 <template>
   <Card class="profile-card">
     <template #content>
@@ -31,22 +28,24 @@
 <style scoped>
 /* 카드 전체 스타일 */
 .profile-card {
-  padding: 20px;
-  border: 2px solid #0057ff; /* 테두리 추가 */
+  padding: 24px;
+  border: 2px solid #0057ff;
   border-radius: 12px;
+  margin-bottom: 24px; /* 다른 요소들과의 간격 확보 */
 }
 
 /* 프로필 컨테이너 */
 .profile-container {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 30px; /* 이미지와 텍스트 간격 증가 */
+  flex-wrap: wrap; /* 반응형에서 줄바꿈 가능하도록 */
 }
 
 /* 프로필 이미지 */
 .profile-image {
-  width: 100px;
-  height: 100px;
+  width: 120px;
+  height: 120px;
   border-radius: 50%;
   overflow: hidden;
   background: #d3d3d3;
@@ -67,8 +66,9 @@
 }
 
 h1 {
-  font-size: 20px;
+  font-size: 22px;
   font-weight: bold;
+  margin-bottom: 8px; /* 제목과 내용 간격 */
 }
 
 .eng-name {
@@ -80,19 +80,20 @@ h1 {
 hr {
   border: none;
   border-top: 1px solid #ddd;
-  margin: 8px 0;
+  margin: 10px 0;
 }
 
 /* 정보 스타일 */
 .info {
   display: flex;
-  gap: 10px;
+  gap: 16px; /* 라벨과 값 간 간격 증가 */
+  margin-bottom: 10px; /* 정보 간 간격 증가 */
 }
 
 .label {
   font-weight: bold;
   color: #666;
-  min-width: 80px;
+  min-width: 100px;
 }
 
 .value {
