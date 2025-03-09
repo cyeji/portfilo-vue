@@ -3,7 +3,7 @@
     <!-- 제목 섹션 -->
     <h1 class="title">🚀 {{ project?.title }}</h1>
     <p class="subtitle">{{ project?.intro }}</p>
-    <img :src="project?.imageUrl" alt="Project Image" class="project-image" />
+    <img v-if="project?.imageUrl" :src="project?.imageUrl" alt="Project Image" class="project-image" />
 
     <!-- 프로젝트 정보 카드 -->
     <div class="project-card">
@@ -18,7 +18,6 @@
     <!-- 요약 섹션 -->
     <div class="project-card">
       <h2 class="section-title">🛠 기술스택</h2>
-      <!-- 이미지 추가 (있을 경우만 표시) -->
       <img v-if="project?.techSkillImageUrl" :src="project?.techSkillImageUrl" alt="Tech Stack Image" class="tech-stack-image" />
     </div>
 
@@ -83,7 +82,7 @@ const projects = [
   {
     title: "Rate Limiter Spring Boot Starter",
     period: "2024.11 ~ 2025.03",
-    imageUrl: new URL('@/assets/images/rate-limiter.png', import.meta.url).href, // 동적 경로
+    techSkillImageUrl: new URL('@/assets/images/ratelimiter_techskill.png', import.meta.url).href, // 동적 경로
     githubUrl: "https://github.com/innercicle-be-rate-limiter/rate-limiter-spring-boot-starter",
     intro: "가상면접 사례로 배우는 대규모 시스템 설계 기초 책 실습 : 처리율 제한기",
     techStack: "SpringBoot(Java), Junit, Multi-Module, Redis",
