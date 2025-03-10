@@ -36,6 +36,15 @@ const educations = ref([
       "📚 백엔드 개발 관련 교육 과정 이수",
       "🚀 프로젝트 3건 개발 및 배포 경험"
     ]
+  },
+  {
+    title: "O’Reilly 풀스텍 테스트 베타리더 ",
+    period: "2023.03",
+    details: [
+      "출판 전 원고 피드백 제공",
+      "풀스택 테스트 도구에 대한 종류와 예시 파악",
+      "도서를 통한 백엔드 테스트 도구 실무 적용"
+    ]
   }
 ]);
 </script>
@@ -71,6 +80,7 @@ const educations = ref([
   background: #f5f7fa;
   padding: 16px;
   border-radius: 8px;
+  margin-bottom: 16px; /* 카드 간격 조정 */
 }
 
 /* 교육 과정 제목 */

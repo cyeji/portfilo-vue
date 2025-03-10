@@ -78,6 +78,13 @@ const projects = ref([
   background: #fff;
   margin-bottom: 20px;
 }
+.project-card:last-child  {
+  border: 2px solid #d9e2ef;
+  border-radius: 12px;
+  padding: 20px;
+  background: #fff;
+  margin-bottom: 50px;
+}
 
 /* 프로젝트 제목과 버튼을 한 줄에 배치 */
 .project-header {

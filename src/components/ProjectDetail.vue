@@ -39,8 +39,8 @@
 
     <!-- 시기 섹션 -->
     <div class="project-card">
-      <h2 class="section-title">⏳ 시기</h2>
-      <p>{{ project?.timeline }}</p>
+      <h2 class="section-title">⏳ 요구사항 명세서</h2>
+      <vueMarkDown :source="project?.timeline" />
     </div>
 
     <!-- 돌아가기 버튼 -->
@@ -51,6 +51,7 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import { useRoute } from "vue-router";
+import vueMarkDown from "vue3-markdown-it";
 
 const route = useRoute();
 const project = ref(null);
@@ -77,7 +78,7 @@ const projects = [
       "기획 단계부터 개발까지 주도하여 프로젝트를 성공적으로 런칭",
       "DDD 및 클린 아키텍처 적용으로 코드 유지보수성 향상"
     ],
-    timeline: "2024년 11월부터 2025년 3월까지 진행된 프로젝트"
+    timeline: "[주문&배송 (주문 내역 및 조회를 위한 배송 요구사항 명세서)](https://github.com/FC-InnerCircle-ICD2/commerce-BE/issues/78) 🚀"
   },
   {
     title: "Rate Limiter Spring Boot Starter",
