@@ -56,7 +56,7 @@ const projects = ref([
   },
   {
     title: "rate-limiter-spring-boot-starter",
-    period: "2024.11 ~ 2025.03",
+    period: "2024.11 ~ 2024.11",
     githubUrl: "https://github.com/innercicle-be-rate-limiter/rate-limiter-spring-boot-starter",
     intro: "가상면접 사례로 배우는 대규모 시스템 설계 기초 책 실습 : 처리율 제한기",
     techStack: "SpringBoot(Java), Junit, Multi-Module, Redis",
