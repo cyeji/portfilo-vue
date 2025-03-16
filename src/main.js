@@ -11,7 +11,7 @@ import Aura from '@primevue/themes/aura'
 import Card from 'primevue/card'
 import InputText from 'primevue/inputtext'
 import Button from 'primevue/button'
-import Timeline from 'primevue/Timeline'
+import Timeline from 'primevue/timeline'
 import Image from 'primevue/image';
 import Avatar from 'primevue/avatar';
 import 'primeicons/primeicons.css'
