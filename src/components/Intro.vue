@@ -20,6 +20,13 @@
             </p>
           </div>
           <div class="info">
+            <p class="label">회사</p>
+            <p class="value">
+              티웨이항공 (2023.10 ~ 재직중)<br />
+              SoluM (2020.09 ~ 2022.09)
+            </p>
+          </div>
+          <div class="info">
             <p class="label">블로그</p>
             <a href="https://yejipro.tistory.com" target="_blank" class="highlight">https://yejipro.tistory.com</a>
           </div>

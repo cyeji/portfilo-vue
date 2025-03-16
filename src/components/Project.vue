@@ -62,8 +62,7 @@ const projects = ref([
     techStack: "SpringBoot(Java), Junit, Multi-Module, Redis",
     details: [
       "Spring Boot 기반 처리율 제한기(Rate Limiter) 구현",
-      "처리율 제한 알고리즘을 활용한 요청 제한 적용",
-      "Redis를 이용한 분산 환경에서의 동시성 문제 해결"
+      "처리율 제한 알고리즘을 활용한 요청 제한 적용"
     ]
   }
 ]);

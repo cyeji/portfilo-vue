@@ -3,7 +3,7 @@
     <template #content>
       <div class="education-container">
         <!-- 교육 섹션 제목 -->
-        <h2 class="section-title">교육</h2>
+        <h2 class="section-title">교육/외부활동</h2>
         <hr class="divider" />
 
         <!-- 교육 과정 -->

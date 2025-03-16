@@ -38,9 +38,13 @@
     </div>
 
     <!-- 시기 섹션 -->
-    <div class="project-card">
+    <div class="project-card" v-if="project?.timeline && project.timeline.length">
       <h2 class="section-title">⏳ 요구사항 명세서</h2>
-      <vueMarkDown :source="project?.timeline" />
+      <vueMarkDown
+        v-for="(item, index) in project?.timeline"
+        :key="index"
+        :source="item"
+      />
     </div>
 
     <!-- 돌아가기 버튼 -->
@@ -78,12 +82,13 @@ const projects = [
       "기획 단계부터 개발까지 주도하여 프로젝트를 성공적으로 런칭",
       "DDD 및 클린 아키텍처 적용으로 코드 유지보수성 향상"
     ],
-    timeline: "[주문&배송 (주문 내역 및 조회를 위한 배송 요구사항 명세서)](https://github.com/FC-InnerCircle-ICD2/commerce-BE/issues/78) 🚀"
+    timeline: ["[주문&배송 (주문 내역 및 조회를 위한 배송 요구사항 명세서)](https://github.com/FC-InnerCircle-ICD2/commerce-BE/issues/78) 🚀",
+    "[주문 요구사항 명세서](https://innerciclebe.dooray.com/share/tasks/5Wtl1bo_Qly8BxWTMy8YbQ)"]
   },
   {
     title: "Rate Limiter Spring Boot Starter",
-    period: "2024.11 ~ 2025.03",
-    techSkillImageUrl: new URL('@/assets/images/ratelimiter_techskill.png', import.meta.url).href, // 동적 경로
+    period: "2024.11 ~ 2024.11",
+    techSkillImageUrl: new URL('@/assets/images/ratelimiter_techskill_20250316.png', import.meta.url).href, // 동적 경로
     githubUrl: "https://github.com/innercicle-be-rate-limiter/rate-limiter-spring-boot-starter",
     intro: "가상면접 사례로 배우는 대규모 시스템 설계 기초 책 실습 : 처리율 제한기",
     techStack: "SpringBoot(Java), Junit, Multi-Module, Redis",
@@ -91,13 +96,13 @@ const projects = [
     roles: [
       "Spring Boot 기반 처리율 제한기(Rate Limiter) 구현",
       "Token Bucket 및 Leaky Bucket 알고리즘을 활용한 요청 제한 적용",
-      "Redis를 이용한 분산 환경에서의 동시성 문제 해결"
+      "GitHub Actions를 활용한 태깅(Tagging) 자동화 전략을 도입"
     ],
     achievements: [
-      "단일 서버 환경에서 최대 처리량 3배 증가",
-      "분산 환경에서 성능 테스트를 통해 안정적인 API 응답 확보"
+      "처리율 제한기 알고리즘(Fixed Window, Sliding Window, Token Bucket 등)의 원리를 깊이 이해하고, 프로젝트에 적용",
+      "커스텀 처리율 제한 라이브러리를 개발하여 공통 모듈로 분리하고, 다른 API 모듈에도 적용하여 재사용성을 높임",
+      "GitHub Actions를 활용한 태깅(Tagging) 자동화 전략을 도입하여 배포 프로세스 개선"
     ],
-    timeline: "2024년 11월부터 2025년 3월까지 진행된 프로젝트"
   }
 ];
 
